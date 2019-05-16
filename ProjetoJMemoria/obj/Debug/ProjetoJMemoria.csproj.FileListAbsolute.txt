@@ -1,0 +1,10 @@
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\bin\Debug\ProjetoJMemoria.exe.config
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\bin\Debug\ProjetoJMemoria.exe
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\bin\Debug\ProjetoJMemoria.pdb
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.csprojAssemblyReference.cache
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.FrmJogoDaMemoria.resources
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.Properties.Resources.resources
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.csproj.GenerateResource.cache
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.csproj.CoreCompileInputs.cache
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.exe
+C:\Projetos\src\ProjetoJMemoria\ProjetoJMemoria\obj\Debug\ProjetoJMemoria.pdb
