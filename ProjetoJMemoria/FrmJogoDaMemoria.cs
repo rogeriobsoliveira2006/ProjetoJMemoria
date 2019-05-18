@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,39 +33,43 @@ namespace ProjetoJMemoria
                 item.Image = Properties.Resources.Verso;
                 item.Enabled = true;
             }
+            Posicoes();
         }
 
         private void Posicoes()
         {
+            int[,] matrizXY = { { 105, 170 }, { 197, 170 }, { 288, 170 }, { 105, 296 }, { 197, 296 }, { 288, 296 }, { 151, 422 }, { 246, 422 }, { 426, 170 }, { 519, 170 }, { 388, 296 }, { 480, 296 }, { 571, 296 }, { 388, 422 }, { 480, 422 }, { 571, 422 }, { 672, 170 }, { 764, 170 }, { 855, 170 }, { 672, 296 }, { 764, 296 }, { 855, 296 }, { 718, 422 }, { 813, 422 } };
+            Random rdn = new Random();
+            List<string> linhaVerificacao = new List<string>();
+            int i = 0;
+            int[] coord = new int[2];
+
             foreach (PictureBox item in Controls.OfType<PictureBox>())
             {
-                Random rdn = new Random();
-
-                int[] xP = { 3, 95, 186, 49, 144, 41, 134 };
-                int[] yP = { 3, 129, 255 };
-
-            Repete:
-                var X = xP[rdn.Next(0, xP.Length)];
-                var Y = yP[rdn.Next(0, yP.Length)];
-
-                string verificacao = X.ToString() + Y.ToString();
-
-                if (lista.Contains(verificacao))
+                do
                 {
-                    goto Repete;
-                }
-                else
-                {
-                    item.Location = new Point(X, Y);
-                    lista.Add(verificacao);
-                }
+                    i = rdn.Next(0, matrizXY.GetLength(0));
+                    
+                    if (!lista.Contains(i.ToString()))
+                    {
+                        for (int j = 0; j < matrizXY.GetLength(1); j++)
+                        {
+                            coord[j] = matrizXY[i, j];
+                            
+                        }
+                        item.Location = new Point(coord[0],coord[1]);
+                        lista.Add(i.ToString());
+                    }
+
+                } while (linhaVerificacao.Contains(i.ToString()));
+
+                linhaVerificacao.Add(i.ToString());
+
             }
         }
 
         private void ImagensClick_Click(object sender, EventArgs e)
         {
-            bool parEncontrado = false;
-
             PictureBox pic = (PictureBox)sender;
             cliques++;
 
@@ -82,8 +87,7 @@ namespace ProjetoJMemoria
                 movimentos++;
                 lblMovimentos.Text = "Movimentos: " + movimentos.ToString();
                 tags[1] = int.Parse(string.Format("{0}", pic.Tag));
-                parEncontrado = ChecagemPares();
-                Desvirar(parEncontrado);
+                Desvirar(ChecagemPares());
             }
         }
 
@@ -103,11 +107,13 @@ namespace ProjetoJMemoria
 
         private void Desvirar(bool check)
         {
+            Thread.Sleep(1000);
+
             foreach (PictureBox item in Controls.OfType<PictureBox>())
             {
                 if (int.Parse(string.Format("{0}", item.Tag)) == tags[0] || int.Parse(string.Format("{0}", item.Tag)) == tags[1])
                 {
-                    if (check == true)
+                    if (check)
                     {
                         item.Enabled = false;
                         cartasEncontradas++;
