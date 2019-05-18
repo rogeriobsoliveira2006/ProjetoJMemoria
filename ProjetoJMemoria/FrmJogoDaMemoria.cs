@@ -42,7 +42,7 @@ namespace ProjetoJMemoria
             Random rdn = new Random();
             List<string> linhaVerificacao = new List<string>();
             int i = 0;
-            int[] coord = new int[2];
+            int[] coords = new int[2];
 
             foreach (PictureBox item in Controls.OfType<PictureBox>())
             {
@@ -54,10 +54,10 @@ namespace ProjetoJMemoria
                     {
                         for (int j = 0; j < matrizXY.GetLength(1); j++)
                         {
-                            coord[j] = matrizXY[i, j];
+                            coords[j] = matrizXY[i, j];
                             
                         }
-                        item.Location = new Point(coord[0],coord[1]);
+                        item.Location = new Point(coords[0],coords[1]);
                         lista.Add(i.ToString());
                     }
 
@@ -125,7 +125,28 @@ namespace ProjetoJMemoria
                     }
                 }
             }
+
+            FinalJogo();
         }
 
+        private void FinalJogo()
+        {
+            if (cartasEncontradas == img.Length * 2)
+            {
+                MessageBox.Show("Parabéns, você terminou o jogo com " + movimentos.ToString() + " movimentos!");
+                DialogResult msg =  MessageBox.Show("Deseja continuar o jogo?", "Caixa de pergunta", MessageBoxButtons.YesNo);
+                if (msg == DialogResult.Yes)
+                {
+                    cliques = 0; movimentos = 0; cartasEncontradas = 0;
+                    lista.Clear();
+                    Inicio();
+                }
+                else if(msg == DialogResult.No)
+                {
+                    MessageBox.Show("Obrigado por jogar!");
+                    Application.Exit();
+                }
+            }
+        }
     }
 }
